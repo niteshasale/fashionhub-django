@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html>
+{%load static %}
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{%static 'static/base.css'%}">
+    
+   
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   
+   <link rel="stylesheet" href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.dropbtn').click(function(){
+      $('.dropdown').toggle();
+
+    });
+    $('.dropbtn2').click(function(){
+      $('.dropdown2').toggle();
+    });
+    
+    $('.dropbtn3').click(function(){
+      $('.dropdown3').toggle();
+    });
+
+    $('.dropbtn4').click(function(){
+      $('.dropdown4').toggle();
+    });
+    $('.fa-bars').click(function(){
+      $('.menu-content').toggle();
+    });
+  })
+  
+</script>
+<body>
+  <nav>
+    
+  </nav>
+  <header>
+    <div class="menu-header">
+      <i class="fa fa-bars"></i>
+      <h4 id="mylogo1">FASHION<sub>HUB</sub></h4>
+    </div>
+    
+    <div class="menu-content">
+      
+      <ul>
+      <div class="logo">
+        <h4 id="mylogo"class="m-2">FASHION<sub>HUB</sub></h4>
+      </div>
+      
+      <li><a href="#">HOME</a></li>
+      <li><a href="#" class="dropbtn">PRODUCTS<i class="m-2 fa fa-caret-down"></i></a>
+        <ul class="dropdown">
+          <li><a href="#" class="dropbtn2">SHIRTS<i class="m-2 fa fa-caret-right right"></i><i id="down" class="m-2 fa fa-caret-down"></i></a>
+            <ul class="dropdown2">
+              <li><a href="">FORMAL</a></li>
+              <li><a href="">CASUAL</a></li>
+              <li><a href="">HOODIE</a></li>
+            </ul>
+          </li>
+          <li><a href="#" class="dropbtn3">PANTS<i class="m-2 fa fa-caret-right right"></i><i id="down" class="m-2 fa fa-caret-down"></i></a>
+            <ul class="dropdown3">
+              <li><a href="">FORMAL</a></li>
+              <li><a href="">CASUAL</a></li>
+              <li><a href="">JEANS</a></li>
+            </ul>
+          </li>
+          <li><a href="#" class="dropbtn4">SHOES<i class="m-2 fa fa-caret-right right"></i><i id="down" class="m-2 fa fa-caret-down"></i></a>
+            <ul class="dropdown4">
+              <li><a href="">FORMAL</a></li>
+              <li><a href="">CANVAS</a></li>
+              <li><a href="">LOFER</a></li>
+              <li><a href="">SNEAKERS</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#">ORDERS</a></li>
+      <li><a href="#">CART<i class="fa fa-shopping-cart"></i></a></li>
+      
+      <div class="sign">
+        <a href="#">ACCOUNT<i class="fa fa-sign"></i></a>
+      
+      </div>
+      </ul>
+    
+    </div>
+  </header>
+<!-- ************************************************8footer***************************************-->
+  {% block content%}
+  {% endblock content%}
+
+
+
+  <footer class="page-footer bg-dark mt-lg-5"style="">
+    <div class="bg-success" style="border-bottom:2px solid red">
+      <div class="ontainer"> 
+        <div class="row py-4 d-flex align-items-center">
+          <div class="col-md-12 text-center">
+            <a href="#"><i class="fa fa-facebook mr-4"></i></a>
+            <a href="#"><i class="fab fa-twitter mr-4"></i></a>
+            <a href="#"><i class="fab fa-instagram mr-4"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="container text-center mt-4" style="border-bottom: 2px solid red">
+      <div class="row">
+        
+        <div class="col-sm-3 mb-3" style="border-right: 1px solid red">
+          <h7 class="text-uppercase font-weight-bold font-italic text-white">STAY in TOUCH</h7><br>
+          <hr class="bg-success mb-4 mt-0 d-inline-block mx-auto"style="width:125px;height: 2px;">
+          <form class="">
+            <input type="text"class="form-control" placeholder="Example@gmail.com"autocomplete="off"
+            style="background-color: transparent;color:white  "><br>
+            <textarea class="form-control"placeholder="Your message...!"style="background-color:transparent;color:white"></textarea><br>
+            <button type="button" class="btn btn-success btn-sm"style="width: 100%">SEND</button>
+          </form>
+        </div>
+
+        <div class="col-sm-3 mx-auto mb-3" style="border-right: 1px solid red">
+          <h6 class="text-uppercase font-weight-bold font-italic text-white text-left">PRODUCTS</h6>
+          <hr class="bg-success mb-4 mt-0"style="width:125px;height: 2px;">
+            <div class="flex-wrap text-left">
+            <span class="my-2"><a class="footer-a" href="#">SHIRTS</a></span><br>
+            <span class="my-2"><a class="footer-a" href="#">PANTS</a></span><br>
+            <span class="my-2"><a class="footer-a" href="#">SHOES</a></span><br>
+            </div>
+        </div>
+
+
+        <div class="col-sm-3 mb-3" style="border-right: 1px solid red">
+          <h6 class="text-uppercase font-weight-bold font-italic text-white text-left">usefull links</h6>
+          <hr class="bg-success mb-4 mt-0"style="width:125px;height: 2px;">
+            <div class="flex-wrap text-left">
+            <span class="my-2"><a class="footer-a" href="#">HOME</a></span><br>
+            <span class="my-2"><a class="footer-a" href="#">ORDERS</a></span><br>
+            <span class="my-2"><a class="footer-a" href="#">CART</a></span><br>
+            <span class="my-2"><a class="footer-a" href="#">ACCOUNT</a></span><br>
+            </div>
+        </div>
+
+        <div class="col-sm-3 mb-3">
+          <h6 class="font-weight-bold font-italic text-white text-left">CONTACT</h6>
+          <hr class="bg-success mb-4 mt-0"style="width:125px;height: 2px;">
+            <div class="flex-wrap text-white text-left">
+            <span class="my-2"><i class="fa fa-home" href="#"> </i> pimpari-chinchwad city(pune)</span><br>
+            <span class="my-2"><i class="fa fa-envelope" href="#"></i> niteshasale358@gmail.com</span><br>
+            <span class="my-2"><i class="fa fa-phone" href="#"></i> +918999398694</span><br>
+            <span class="my-2"><i class="fa fa-print" href="#"></i> +020276767585</span><br>
+            </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="bg-secondary text-center py-2 text-white">
+      <p>&copy;Copyright
+        <span><a href="#">mensfashionhub.com</a></span> |
+        <span>Designed By niteshasale358@gmail.com</span></p>
+    </div>
+  </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

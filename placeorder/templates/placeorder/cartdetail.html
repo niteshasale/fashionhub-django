@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+
+
+
+{% load  static %}
+
+{%block content%}
+{% load cartfilter%}
+<style>
+.img-cart{
+    width:40px;
+    height:50px;
+}
+.select-tag{
+    border-radius:5px;
+    background:rgba(255,255,255,.4);
+    width:80px;
+}
+.table{
+    background:rgba(255,255,255,.4);
+    box-shadow:0 5px 5px rgba(0,0,0,.2);
+    border-radius:20px;
+}
+
+</style>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  window.onload = function() {
+        $.ajax({
+          url:'/quantity/',
+          type:'post',
+          data:{
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+          },
+          success:function(result){
+            document.getElementById('cartcount').innerHTML = result;
+          }
+          
+        });
+        
+    }
+</script>
+
+
+
+
+<script type="text/javascript">
+    
+    function getval(quan,model_name,product_id)
+    {
+        $.ajax({
+            url:'/placeorder/quantityupdate/',
+            type:'post',
+            data:{
+                product_id:product_id,
+                model_name:model_name,
+                quan:quan,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success:function(result){
+                location.reload();
+            }
+        });   
+    }
+
+    $(document).on('click','.remove',function(e){
+        e.preventDefault();
+        if(confirm('Remove in Cart...!'))
+        {
+            var product_id = $(this).data('id');
+            $.ajax({
+                url:'/homecart/',
+                type:'post',
+                data:{
+                    product_id:product_id,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success:function(result){
+                    location.reload();
+                }
+            });
+        }
+
+    });
+
+    
+
+</script>
+    <div class="container">
+        
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Categories</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pro in shirt_data%}
+                   
+                    <tr>
+                        <td><img class="img-cart rounded"src="{{pro.image.url}}"></td>
+                        <td>{{pro.name}}</td>
+                        <td>{{pro.status}}</td>
+                        <td>{{pro|product_price}}</td>
+                        
+                        <td>
+                        <select class="select-tag" onchange="getval(this.value,'Shirt',{{pro.id}})" data-id="{{pro.id}}">
+                            {% for i in ' 123456789'%}
+                            <option>{{i}}</option>
+                            {%endfor%}
+                        </select>
+                        
+                        </td>
+                        
+                        <td>{{pro|shirt_total:request.session.cart}}</td>
+                        <td><button type="button" data-id="{{pro.id}},Shirt"class="btn btn-sm remove"><i class="fa fa-remove"></i></td>
+                    </tr>
+                    
+                {%endfor%}
+
+
+                    {% for pro in pant_data%}
+                    <tr>
+                        <td><img class="img-cart rounded"src="{{pro.image.url}}"></td>
+                        <td>{{pro.name}}</td>
+                        <td>{{pro.status}}</td>
+                        <td>{{pro|product_price}}</td>
+                        
+                        <td>
+                        <select class="select-tag" onchange="getval(this.value,'Pant',{{pro.id}})" data-id="{{pro.id}}">
+                            {% for i in ' 123456789'%}
+                            <option>{{i}}</option>
+                            {%endfor%}
+                        </select>
+                        </td>
+                        
+                        <td>{{pro|pant_total:request.session.cart}}</td>
+                        <td><button type="button" data-id="{{pro.id}},Pant"class="btn btn-sm remove"><i class="fa fa-remove"></i></td>
+                    </tr>
+                {%endfor%}
+
+                {% for pro in shoe_data%}
+                    <tr>
+                        <td><img class="img-cart rounded"src="{{pro.image.url}}"></td>
+                        <td>{{pro.name}}</td>
+                        <td>{{pro.status}}</td>
+                        <td>{{pro|product_price}}</td>
+                        
+                        <td>
+                        <select class="select-tag" onchange="getval(this.value,'Shoe',{{pro.id}})" data-id="{{pro.id}}">
+                            {% for i in ' 123456789'%}
+                            <option>{{i}}</option>
+                            {%endfor%}
+                        </select>   
+                        </td>
+                        
+                        <td>{{pro|shoe_total:request.session.cart}}</td>
+                        <td><button type="button" data-id="{{pro.id}},Shoe"class="btn btn-sm remove"><i class="fa fa-remove"></i></td>
+                    </tr>
+                {%endfor%}
+                    <tr>
+                        <th colspan="4" class="text-center">Total Amount</th>
+                        <th colspan="3" class="text-center">{{request.session.cart|total_amount}}</th>
+                    </tr>
+
+
+                </tbody>
+            </table>
+            <a href="{% url 'checkout'%}" class="btn border rounded btn-large btn-success"value="Check-Out">Check-Out</a>
+    </div>    
+ 
+
+{%endblock content%}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+
+
+{% load  static %}
+
+{%block content%}
+<style>
+.register_div{
+  background: rgba(255,255,255,.4);
+  box-shadow: 0 5px 5px rgba(0,0,0,.2);
+}
+.errorlist{
+  font-size:15px;
+  color:orange;
+  background:rgba(0,0,0,.5);
+}
+</style> 
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  window.onload = function() {
+        $.ajax({
+          url:'/quantity/',
+          type:'post',
+          data:{
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+          },
+          success:function(result){
+            document.getElementById('cartcount').innerHTML = result;
+          }
+          
+        });
+        
+    }
+</script>
+
+<div class="mt-4 pl-4 row">
+  <div class="col-sm-4 .col-12 mx-auto register_div">
+    
+      
+    
+    <form action="" method="POST" novalidate>
+      {% csrf_token%}
+      <p class="errorlist">{% if email_error%}{{email_error}}{%endif%}</p>
+      <h4 class="text-center mt-2 pb-3 label">Create Account</h4>
+      {{form.non_field_errors}}
+      {%for field in form%}
+      <p>{{field.label_tag}}<br>
+      {{field}}</p>
+      <p>{{field.errors}}</p>
+      {%endfor%}
+      <hr>
+      <input type="submit" class="btn btn-success btn-sm mb-4" value="Register">
+    </form> 
+  </div>
+</div>
+
+  
+{%endblock content%}

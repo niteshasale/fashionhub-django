@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load  static %}
+
+{%block content%}
+{% load cartfilter%}
+<style>
+.img-cart{
+    width:40px;
+    height:50px;
+}
+
+.table{
+    background:rgba(255,255,255,.4);
+    box-shadow:0 5px 5px rgba(0,0,0,.2);
+    border-radius:20px;
+}
+
+</style>
+
+<div class="container">
+ 
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Sno.</th>
+                <th>Image</th>
+                <th>Product Name</th>
+                <th>Date</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pro in orders%}
+            <tr>
+                <td>{{ forloop.counter}}</td>
+                <td><img class="img-cart rounded"src="{{pro|get_image_orderlist}}"></td>
+                <td>{{pro|get_name_orderlist}}</td>
+                <td>{{pro.date}}</td>
+                <td>{{pro.quantity}}</td>
+                <td>{{pro.price}}</td>
+                <td>{{pro.status}}</td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>  
+    
+    
+  
+</div>
+
+  
+{%endblock content%}

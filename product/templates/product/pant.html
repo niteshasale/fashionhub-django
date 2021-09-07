@@ -1,0 +1,217 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+{% load homefilter%}
+
+<style>
+.shopping_card{
+    position:relative;
+    height: 300px;
+    width: 200px;
+    background:rgba(255,255,255,.4);
+    box-shadow: 0 5px 5px rgba(0,0,0,.2);
+    border-radius:5px;
+}
+.shopping_card .imgbox{
+  height:100%;
+  box-sizing:border-box;
+}
+.shopping_card .imgbox img{
+  display:block;
+  width:90%;
+  margin:20px auto 0;
+}
+.details{
+  position:relative;
+  width:100%;
+  bottom:0;
+  border-radius:5px;
+  background:rgba(255,255,255,.9);
+  padding:10px;
+  box-shadow:0 5px 5px rgba(0,0,0,.2);
+  transition:.5s;
+  text-align:justify;
+  visibility:hidden;
+}
+.shopping_card:hover .details{
+  visibility:visible;
+  transition:1s;
+  bottom: 150px;
+}
+.details p{
+  width:100%;
+  font-size:15px;
+}
+.details p span{
+  font-size:12px;
+}
+.details span{
+  font-size:12px;
+}
+
+ul{
+  display:flex;
+  margin:0;
+  padding:0;
+}
+ul li:first-child{
+  margin-left:0;
+}
+.dot{
+  height:8px;
+  width:8px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color:green;
+}
+.dot1{
+  height:8px;
+  width:8px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color:red;
+}
+.btn_menu
+{
+  background:rgba(0,0,0,.5)
+}
+.btn_menu1{
+  background:rgba(255,255,255,.4);
+}
+</style>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  window.onload = function() {
+        $.ajax({
+          url:'/quantity/',
+          type:'post',
+          data:{
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+          },
+          success:function(result){
+            document.getElementById('cartcount').innerHTML = result;
+          }
+          
+        });
+        
+    }
+  $(document).on('click','.submit',function(e){
+    e.preventDefault();
+    var product_id = $(this).data('id');
+    var id = $(this).attr('id');
+    var inner = document.getElementById(id).innerHTML;
+    var c = document.getElementById('cartcount').innerHTML;
+    $.ajax({
+      url:'/homecart/',
+      type:'post',
+      data:{product_id:product_id,
+      csrfmiddlewaretoken: '{{ csrf_token }}'
+      },
+      success:function(result){
+        var item = '';
+        for(i=0;i<result.length-1;i++)
+        {
+          item = item+result[i]
+        }
+        
+        var count = result[result.length-1];
+        document.getElementById(id).innerHTML = item;
+        document.getElementById('cartcount').innerHTML = count;
+      },
+    });
+  });
+
+</script>
+<div class="roundimg">
+    <div class="round-image">
+      <span style="--i:1;"><img src="{% static 'static/images/casual (8).png'%}"></span>
+      <span style="--i:2;"><img src="{% static 'static/images/casual (14).png'%}"></span>
+      <span style="--i:3;"><img src="{% static 'static/images/casual (16).png'%}"></span>
+      <span style="--i:4;"><img src="{% static 'static/images/formal (12).png'%}"></span>
+      <span style="--i:5;"><img src="{% static 'static/images/formal (16).png'%}"></span>
+      <span style="--i:6;"><img src="{% static 'static/images/formal (19).png'%}"></span>
+      <span style="--i:7;"><img src="{% static 'static/images/jeans (10).png'%}"></span>
+      <span style="--i:8;"><img src="{% static 'static/images/jeans (16).png'%}"></span>
+
+    </div>
+
+</div>
+
+<div class="mt-4 pl-4 row">
+                
+       
+  <div class="col-sm-3">
+    <div class="row">
+      <img class="col-3"src="{% static 'static/images/jeans (10).png'%}" style="width:50px;height:50px">
+      <a href="/pant/ALL/" {% if data|style:'ALL'%}class="col-9 btn btn_menu"{% else %} class="col-9 btn btn_menu1"{%endif%}>ALL</a>
+      <hr>
+
+      <img class="col-3"src="{% static 'static/images/formal (16).png'%}" style="width:50px;height:50px">
+      <a href="/pant/FORMAL/"{% if data|style:'FORMAL'%}class="col-9 btn btn_menu"{% else %} class="col-9 btn btn_menu1"{%endif%}>FORMAL</a>
+      <hr>
+
+      <img class="col-3"src="{% static 'static/images/casual (14).png'%}" style="width:50px;height:50px">
+      <a href="/pant/CASUAL/"{% if data|style:'CASUAL'%}class="col-9 btn btn_menu"{% else %} class="col-9 btn btn_menu1"{%endif%}>CASUAL</a>
+      <hr>
+      
+      <img class="col-3"src="{% static 'static/images/jeans (16).png'%}" style="width:50px;height:50px">
+      <a href="/pant/JEANS/"{% if data|style:'JEANS'%}class="col-9 btn btn_menu"{% else %} class="col-9 btn btn_menu1"{%endif%}>JEANS</a>
+    </div>
+  </div>
+  
+  <div class="col-sm-9">
+    <div class="row">      
+        {% for pro in page_no%}
+        <div class="col-sm-4 pt-5">
+          <div class="shopping_card">
+            <div class="imgbox pt-4">
+              <img src="{{pro.image.url }}">
+            </div>
+            <div class="details">
+              <p>{{pro.name}}<br>
+
+              <b>price:- {{pro|product_price}} &nbsp;</b><span><del style="color:red;">{{pro.price}}</del></span><br>
+              <b>Discount:-</b> <span><mark>{{pro.discount}}%off</mark></span></p>
+              
+              <form>{% csrf_token %}
+              <button type="button" style="width:100%"
+              class="btn btn-sm btn-success submit"id="{{pro.id}}"
+              data-id="{{pro.id}},Pant">Add To Cart</button>
+              </form>
+            </div>
+            
+          </div>
+        </div>
+        {%endfor%}
+    </div>    
+  </div>
+  {% comment %} pagination code {% endcomment %}
+  <ul class="pagination align-right float-right mr-auto">
+      {% if page_no.has_previous %}
+          <li {%if page_no.number == 1 %} class="page-item-active" {% endif%}>
+              <a class="page-link"href="?page=1">&laquo;1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link"href="?page={{page_no.previous_page_number}}">Pre</a>
+          </li>
+      {%endif%}
+
+          <li class"page-item">
+            <a class="page-link">{{page_no.number}}</a>
+          </li>
+      
+      {%if page_no.has_next%}
+          <li class="page-item">
+              <a class="page-link"href="?page={{page_no.next_page_number}}">Nex</a>
+          </li>
+          
+          <li class="page-item">
+              <a class="page-link"href="?page={{page_no.paginator.num_pages}}">{{page_no.paginator.num_pages}}&raquo;</a>
+          </li>
+      {%endif%}    
+  </ul>      
+</div>        
+{% endblock content %}

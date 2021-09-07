@@ -1,0 +1,585 @@
+
+*{
+	margin: 0;
+}
+body{
+	
+	margin: 0;
+	padding: 0;
+	background: linear-gradient(-45deg,#c3e3ec 20%,#d6e8ec 20% 50%,#cbdfec 50% 80%,#d7e0e4 80%);
+	background-attachment: fixed;
+	background-size: 100%;
+	
+}
+
+ul .sign{
+	width:100%;
+	text-align: center;
+	padding: 9px 0px;	
+}
+
+ul .sign a{
+	padding: 2px 30px;	
+	text-decoration: none;
+	display: inline-block;
+	border-radius: 30px;
+	border:1px solid lightblue;
+	background:transparent;
+	color:orange;
+}
+ul .sign a:hover{
+	color:white;
+	background:orange;
+	transition:all 0.5s ease-in;
+}
+
+
+ul{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  background:rgba(255,255,255,.4);
+  box-shadow: 0 5px 5px rgba(0,0,0,.2);
+}
+
+ul li{
+  width:100%;
+  text-align: center;
+  position: relative;
+}
+
+
+ul li a{
+  text-transform: uppercase;
+  color:orange;
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+
+}
+ul li a:hover{
+	color:#ccc;
+	text-decoration: none;
+}
+
+/*logo animation*/
+#mylogo{
+	text-align: center;
+	color:orange;
+
+	animation-name: mylogo;
+	animation-duration:7s;
+	animation-direction:alternate-reverse;
+	animation-iteration-count: infinite;
+}
+@keyframes mylogo{
+	0%{color:#533829;transform:rotateX(180deg);}
+	25%{color:#df6b77;}
+	50%{color:#d6893a;}
+	75%{color:#2bfe72;}
+	100%{color:#45094f;}
+	
+}
+
+/*product dropdown*/
+ul .dropdown{
+	position: absolute;
+	flex-wrap: wrap;
+	width:100%;
+	visibility: hidden;
+	transition: .3s;
+	z-index:100;
+}
+ul li:hover .dropdown{
+	visibility: visible;
+	top:100%;
+}
+/*shirts dropdown*/
+.dropdown2{
+	position: absolute;
+	width:100%;
+	top:0;
+	left:150%;
+	flex-wrap: wrap;
+	transition: .5s;
+	visibility: hidden;
+}
+.dropdown li:hover .dropdown2{
+	visibility: visible;
+	left: 100%;
+
+}
+/*pants dropdown*/ 
+.dropdown3{
+	position: absolute;
+	width: 100%;
+	top:0;
+	left: 150%;
+	flex-wrap: wrap;
+	visibility: hidden;;
+	transition: .5s;
+}
+.dropdown li:hover .dropdown3{
+	visibility: visible;
+	left: 100%;
+}
+
+/*shoes dropdown*/
+.dropdown4{
+	position: absolute;
+	width:100%;
+	top:0;
+	left:150%;
+	flex-wrap:wrap;
+	visibility: hidden;
+	transition: .5s;
+}
+.dropdown li:hover .dropdown4{
+	visibility: visible;
+	left: 100%;
+}
+.menu-header{
+	display: none;
+}
+#down{
+	display: none;
+}
+
+
+/*media code*/
+@media(max-width: 767px){
+	ul{
+		display: table;
+		width:100%;
+	}
+	ul li{
+		text-align: left;
+	}
+	/*shirts*/
+	ul .dropdown, .dropdown2{
+		position: relative;
+		top: 0;
+		left:100px;
+		transition:none;
+		visibility: visible;
+		display: none;
+		z-index: 1;
+	}
+	.dropdown li:hover .dropdown2{
+		left:100px;
+	}
+	/*pants*/
+	ul .dropdown, .dropdown3{
+		position: relative;
+		top: 0;
+		left:100px;
+		transition:none;
+		visibility: visible;
+		display: none;
+		z-index: 2;
+	}
+	.dropdown li:hover .dropdown3{
+		left:100px;
+	}
+	
+
+	/*shoes*/
+	ul .dropdown, .dropdown4{
+		position: relative;
+		top: 0;
+		left:100px;
+		transition:none;
+		visibility: visible;
+		display: none;
+		z-index: 3;
+	}
+	.dropdown li:hover .dropdown4{
+		left:100px;
+	}
+	.menu-content{
+		display: none;
+	}
+	.menu-header{
+		display:inline-block;
+		width:100%;
+		background: rgba(255,255,255,.4);
+		box-shadow: 0 5px 5px rgba(0,0,0,.2);
+		padding:10px;
+	}
+	.menu-header .fa-bars{
+		float:left;
+		cursor: pointer;
+
+	}
+	.menu-header #mylogo1{
+		float: left;
+		margin-left:40%;
+		color:orange;
+		animation-name: mylogo1;
+		animation-duration:7s;
+		animation-direction:alternate-reverse;
+		animation-iteration-count: infinite;
+	}
+	/*animation code*/
+	@keyframes mylogo1{
+		0%{color:#533829;transform:rotateX(180deg);}
+		25%{color:#df6b77;}
+		50%{color:#d6893a;}
+		75%{color:#2bfe72;}
+		100%{color:#45094f;}
+	}
+	.fa-bars{
+		color:orange;
+		border:1px solid orange;
+		padding: 5px 10px;
+		border-radius: 4px;
+	}
+	/*arrow css*/
+	#down{
+		display:inline-block;
+	}
+	.right{
+		display: none;
+	}
+	#mylogo{
+		display: none;
+	}
+	/*roud image*/
+	.roundimg{
+	display: none;
+	}
+	
+
+}
+
+
+/*footer css*/
+.footer-a{
+	color:white;
+	text-align: left;
+}
+.footer-li{
+	text-decoration: none;
+	padding: 5px;
+	
+}
+.footer-a:hover{
+	text-decoration: none;
+	color: orange;
+	transition: all .5s ease-in;
+
+}
+.fa-facebook,.fa-twitter,.fa-whatsapp,.fa-instagram{
+	color:white;
+}
+.fa-facebook:hover{
+	color:#3b5998;
+	transition: .5s;
+}
+.fa-twitter:hover{
+	color:#00acee;
+	transition: .5s;
+}
+.fa-instagram:hover{
+	color:#3f72b9;
+	transition: .5s;
+}
+.fa-whatsapp:hover{
+	color:#25d366;
+	transition: .5s;
+}
+
+
+
+
+
+/*homepage rounded image animation*/
+.roundimg{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height:40vh;
+	background:rgba(0,0,0,.5);
+}
+.round-image{
+	position: relative;
+	width:100px;
+	height: 100px;
+	transform-style: preserve-3d;
+	animation-name: roundimage;
+	animation-duration:25s;
+	animation-direction:linear;
+	animation-iteration-count: infinite;
+}
+@keyframes roundimage{
+	0%{
+		transform:perspective(1000px) rotateY(0deg);
+	}
+	100%{
+		transform:perspective(1000px) rotateY(360deg);
+	}
+}
+.round-image span{
+	position: absolute;
+	top:0;
+	left: 0;
+	width:100%;
+	height: 100%;
+	transform-origin: center;
+	transform-style: preserve-3d;
+	transform: rotateY(calc(var(--i) * 45deg))translateZ(400px);
+	-webkit-box-reflect:below 0px linear-gradient(transparent,transparent,#0004);
+
+}
+.round-image span img{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width:100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
