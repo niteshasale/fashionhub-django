@@ -6,3 +6,4 @@ Python Django Web Application. The main objective of this project is to  deliver
 ## login validation and as well as cart flexibility
 
 ## designing use css animation to create actractive website
+## mysql database
